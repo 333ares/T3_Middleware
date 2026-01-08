@@ -15,6 +15,9 @@ class VerifyAge
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $edad = $request->query('edad');
+        $edadNumero = (int) $edad;
+
         return $next($request);
     }
 }
