@@ -18,6 +18,11 @@ class VerifyAge
         $edad = $request->query('edad');
         $edadNumero = (int) $edad;
 
+        if ($edadNumero <= 0) {
+            return response('La edad debe ser un número mayor de 0.', 400);
+        }
+
+        
         return $next($request);
     }
 }
