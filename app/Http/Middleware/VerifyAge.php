@@ -22,7 +22,9 @@ class VerifyAge
             return response('La edad debe ser un número mayor de 0.', 400);
         }
 
-        
+        if ($edadNumero < 18) {
+            return response('Acceso denegado. Debes ser mayor de 18 años.', 403);
+        }
         return $next($request);
     }
 }
