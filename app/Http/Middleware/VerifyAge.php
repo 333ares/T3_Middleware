@@ -15,16 +15,17 @@ class VerifyAge
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $edad = $request->query('edad');
-        $edadNumero = (int) $edad;
+        $edad = $request->query('edad'); // Obtenemos la edad de la URL
+        $edadNumero = (int) $edad; // Convertimos a número entero
 
-        if ($edadNumero <= 0) {
+        if ($edadNumero <= 0) { // Verificamos si es un número válido
             return response('La edad debe ser un número mayor de 0.', 400);
         }
 
-        if ($edadNumero < 18) {
+        if ($edadNumero < 18) { // Verificamos si es mayor de 18
             return response('Acceso denegado. Debes ser mayor de 18 años.', 403);
         }
-        return $next($request);
+
+        return $next($request); // Si pasa el control, continuamos
     }
 }
